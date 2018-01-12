@@ -6,15 +6,32 @@ export class Router {
         window.addEventListener('hashchange', this.checkRoute.bind(this));
     }
 
-    addRoute(hash, func) {
-        this.routes[hash] = func;
+    addRoute(url, func) {
+        const completeUrl = url.split('/');
+        const hash = completeUrl[0];
+
+        this.routes[hash] = {func, params: {}};
+
+        if(completeUrl.length > 1) {
+            for(let i = 1; i < completeUrl.length; i++) {
+                this.routes[hash].params[completeUrl[i].replace(':', '')] = null;
+            }
+        }
     }
 
     checkRoute() {
+        const completeUrl = location.hash.slice(1).split('/');
+
         const errorRouteIdentifier = '*';
-        const currentHash = location.hash.slice(1);
-        const matchedRoute = this.routes[currentHash] ? this.routes[currentHash] : this.routes[errorRouteIdentifier];
-        matchedRoute();
+        const matchedRoute = this.routes[completeUrl[0]] ? this.routes[completeUrl[0]] : this.routes[errorRouteIdentifier];
+
+        let counter = 1;
+        for (let param in matchedRoute.params) {
+            matchedRoute.params[param] = completeUrl[counter];
+            counter++;
+        }
+
+        matchedRoute.func(matchedRoute.params);
     }
     
 }

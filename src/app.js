@@ -15,6 +15,10 @@ const init = () => {
     const homeController = new controllers.HomeController();
     router.addRoute('home', homeController.test);
 
+    const postsController = new controllers.PostsController();
+    router.addRoute('posts', postsController.showAll);
+    router.addRoute('post/:id', postsController.showOne);
+
     const errorController = new controllers.ErrorController();
     router.addRoute('*', errorController.test);
 

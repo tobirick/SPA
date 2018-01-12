@@ -5,8 +5,8 @@ export default class ErrorController extends Controller {
     test() {
         const data = {
             title: 'Error',
-            body: 'errorororororro'
+            body: 'das ist leider ein error'
         }
-        View.render('index', data);
+        View.render('error', data);
     }
 }
