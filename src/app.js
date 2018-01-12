@@ -1,4 +1,3 @@
-import { View } from './core/View';
 import { Router } from './core/Router';
 import { controllers } from './controllers.js';
 
@@ -6,8 +5,6 @@ window.onload = () => {
     console.log("App is running");
     init();
 };
-
-const domElement = document.getElementById('app');
 
 const init = () => {
     const router = new Router();
@@ -17,7 +14,7 @@ const init = () => {
 
     const postsController = new controllers.PostsController();
     router.addRoute('posts', postsController.showAll);
-    router.addRoute('post/:id', postsController.showOne);
+    router.addRoute('posts/:id', postsController.showOne);
 
     const errorController = new controllers.ErrorController();
     router.addRoute('*', errorController.test);
