@@ -18,11 +18,15 @@ module.exports = {
                         'es2015'
                     ]
                 }
+            },
+            {
+                test: /\.html$/,
+                loader: "mustache-loader"
             }
         ]
     },
     stats: {
         colors: true
     },
-    devtool: 'source-map'
+    devtool: 'inline-source-map'
 };

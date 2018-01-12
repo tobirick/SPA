@@ -3,8 +3,10 @@ import { View } from '../core/View';
 
 export default class HomeController extends Controller {
     test() {
-        const html = '<h1>Home</h1>'
-
-        View.render(html);
+        const data = {
+            title: 'Tobi',
+            body: 'huhu'
+        }
+        View.render('index', data);
     }
 }
